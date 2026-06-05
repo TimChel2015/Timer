@@ -1271,6 +1271,7 @@
 
     dom.languageLabel.textContent = langSet.languageLabel;
     dom.heroTitle.textContent = langSet.title;
+    document.title = langSet.title;
     dom.heroSubtitle.textContent = langSet.subtitle;
     dom.controlsTitle.textContent = langSet.controlsTitle;
     dom.eventNameLabel.textContent = langSet.eventNameLabel;
