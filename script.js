@@ -795,7 +795,8 @@
     statusMessage: document.getElementById("status-message"),
     factDay: document.getElementById("fact-day"),
     languageLabel: document.getElementById("language-label"),
-    heroTitle: document.querySelector(".hero h1"),
+    heroTitle: document.getElementById("hero-title"),
+    pageTitle: document.querySelector("title"),
     heroSubtitle: document.getElementById("hero-subtitle"),
     controlsTitle: document.getElementById("controls-title"),
     eventNameLabel: document.getElementById("event-name-label"),
@@ -867,6 +868,7 @@
     currentLang = selected;
     localStorage.setItem(LANG_STORAGE_KEY, selected);
     applyLanguage(selected);
+    updatePageTitle(getPageTitle(selected));
     renderFactOfDay();
 
     if (currentEvent) {
@@ -1263,6 +1265,19 @@
     dom.notifyModeSelect.value = notifyMode;
   }
 
+  function getPageTitle(lang) {
+    const langSet = I18N[lang] || I18N[DEFAULT_LANG];
+    return langSet.title || I18N[DEFAULT_LANG].title;
+  }
+
+  function updatePageTitle(titleText) {
+    const nextTitle = titleText || I18N[DEFAULT_LANG].title;
+    document.title = nextTitle;
+    if (dom.pageTitle) {
+      dom.pageTitle.textContent = nextTitle;
+    }
+  }
+
   function applyLanguage(lang) {
     const langSet = I18N[lang] || I18N[DEFAULT_LANG];
     document.documentElement.lang = lang;
@@ -1270,8 +1285,10 @@
     dom.languageSelect.value = lang;
 
     dom.languageLabel.textContent = langSet.languageLabel;
-    dom.heroTitle.textContent = langSet.title;
-    document.title = langSet.title;
+    if (dom.heroTitle) {
+      dom.heroTitle.textContent = langSet.title;
+    }
+    updatePageTitle(getPageTitle(lang));
     dom.heroSubtitle.textContent = langSet.subtitle;
     dom.controlsTitle.textContent = langSet.controlsTitle;
     dom.eventNameLabel.textContent = langSet.eventNameLabel;
