@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Important Event Countdown</title>
-    <link rel="stylesheet" href="./styles.css?v=4" />
+    <link rel="stylesheet" href="./styles.css?v=6" />
     <script>
       (function () {
         var titles = {
@@ -37,8 +37,20 @@
     </script>
   </head>
   <body>
-    <div class="theme-switch">
-      <button id="theme-toggle" type="button" aria-label="Переключить тему">☀️</button>
+    <div class="theme-switch" id="theme-switch" role="group" aria-label="Тема оформления">
+      <button
+        type="button"
+        class="theme-switch__btn theme-switch__btn--active"
+        id="theme-light-btn"
+        aria-pressed="true"
+      >
+        <span class="theme-switch__icon" aria-hidden="true">☀️</span>
+        <span class="theme-switch__label" id="theme-light-label">Светлая</span>
+      </button>
+      <button type="button" class="theme-switch__btn" id="theme-dark-btn" aria-pressed="false">
+        <span class="theme-switch__icon" aria-hidden="true">🌙</span>
+        <span class="theme-switch__label" id="theme-dark-label">Тёмная</span>
+      </button>
     </div>
 
     <div class="bg-blur bg-blur--one"></div>
@@ -149,7 +161,7 @@
           </div>
         </div>
 
-        <button type="button" class="btn-secondary" id="pause-button" disabled>Пауза</button>
+        <button type="button" class="btn-secondary" id="clear-timer-button" disabled>Удалить таймер</button>
       </section>
 
       <section class="card fact-card">
@@ -158,6 +170,6 @@
       </section>
     </main>
 
-    <script src="./script.js?v=4"></script>
+    <script src="./script.js?v=7"></script>
   </body>
 </html>
